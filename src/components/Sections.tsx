@@ -128,10 +128,19 @@ export function Contact() {
                 href={l.href}
                 target={dl || mail ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                data-cursor={dl ? 'Download ↓' : l.label}
+                data-cursor={dl ? 'Download ↓' : mail ? 'Mail ↗' : l.label}
                 aria-label={`${l.label}${l.note ? ` (${l.note})` : ''}${dl || mail ? '' : ' — opens in a new tab'}`}
               >
-                <span>{l.label}</span>
+                <span>
+                  {mail ? (
+                    <>
+                      {l.label.split('@')[0]}
+                      <wbr />@{l.label.split('@')[1]}
+                    </>
+                  ) : (
+                    l.label
+                  )}
+                </span>
                 <span aria-hidden>{dl ? '↓' : '↗'}</span>
               </a>
             </li>

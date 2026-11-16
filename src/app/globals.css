@@ -269,6 +269,8 @@ ol{margin:0;padding:0;list-style:none}
 
 /* contact — orb as link */
 .links li{display:flex}.links li>a{flex:1}
+.links a>span:first-child{min-width:0}
+.orb b{max-width:84%;text-align:center;line-height:1.15}
 a.orb{text-decoration:none}
 .orb:focus-visible{outline-color:#fff}
 
@@ -279,8 +281,8 @@ dialog.menu[open]{display:flex;animation:menu-in .45s cubic-bezier(.2,.75,.1,1)}
 @keyframes menu-in{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
 .menu-top{display:flex;justify-content:space-between;align-items:flex-start;font-size:10px}
 .menu-close{display:block;background:transparent;border:1px solid currentColor;border-radius:999px;color:inherit}
-.menu-nav{display:flex;flex-direction:column;margin:auto 0 0;padding-top:40px}
-.menu-nav a{display:flex;align-items:baseline;gap:14px;padding:8px 0 4px;border-bottom:1px solid rgba(128,128,128,.4);font-size:clamp(46px,13vw,104px);font-weight:900;font-variation-settings:"wdth" 62;text-transform:uppercase;letter-spacing:-.01em;line-height:.92}
+.menu-nav{display:flex;flex-direction:column;margin:clamp(28px,6vh,56px) 0 0;border-top:1px solid rgba(128,128,128,.4)}
+.menu-nav a{display:flex;align-items:baseline;gap:14px;padding:12px 0 6px;border-bottom:1px solid rgba(128,128,128,.4);font-size:clamp(46px,13vw,104px);font-weight:900;font-variation-settings:"wdth" 62;text-transform:uppercase;letter-spacing:-.01em;line-height:.92}
 .menu-nav a .mono{font-size:11px;font-weight:400;font-variation-settings:normal;min-width:28px}
 .menu-nav sup{font-size:11px;align-self:flex-start;font-variation-settings:normal;font-weight:400}
 dialog.menu[open] .menu-nav a{animation:fade-up .7s cubic-bezier(.2,.75,.1,1) both}
@@ -288,7 +290,7 @@ dialog.menu[open] .menu-nav a:nth-child(2){animation-delay:.05s}
 dialog.menu[open] .menu-nav a:nth-child(3){animation-delay:.1s}
 dialog.menu[open] .menu-nav a:nth-child(4){animation-delay:.15s}
 dialog.menu[open] .menu-nav a:nth-child(5){animation-delay:.2s}
-.menu-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;font-size:11px}
+.menu-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:28px;font-size:11px}
 .menu-foot .ul{padding:10px 0}
 .menu-theme{border-color:rgba(255,255,255,.4)}
 

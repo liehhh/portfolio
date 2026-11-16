@@ -65,7 +65,7 @@ export interface Profile {
   roles: string;
   headline: string;
   intro: string;
-  /** Optional — not in the source material. Set to enable mailto + copy-email interactions. */
+  /** Optional — enables the mailto link and the copy-email orb in the contact section. */
   email?: string;
   linkedin: string;
   /** Optional — set to add a GitHub link to the contact list. */
@@ -86,6 +86,7 @@ export const profile: Profile = {
   headline: 'Full-stack developer & AI engineer',
   intro:
     'Full-stack developer & AI engineer in Tbilisi. I build web, mobile and desktop apps — with a focus on conversational AI and real-time voice interfaces.',
+  email: 'bnachkebia27@gmail.com',
   linkedin: 'https://www.linkedin.com/in/beka-natchkebia/',
 };
 
@@ -410,7 +411,7 @@ export const marquee = {
 };
 
 export const contact = {
-  lede: 'Interested in full-stack and AI application engineering — conversational interfaces, real-time voice systems, developer tools and reliable cloud applications. The best way to reach me is LinkedIn.',
+  lede: 'Interested in full-stack and AI application engineering — conversational interfaces, real-time voice systems, developer tools and reliable cloud applications. Reach me by email or on LinkedIn.',
 };
 
 export const themes = ['Paper', 'Concrete', 'Ink'] as const;
@@ -419,7 +420,7 @@ export type Theme = (typeof themes)[number];
 /** Contact links shown in the footer grid: socials first, then the public project destinations. */
 export function contactLinks(): ExternalLink[] {
   const out: ExternalLink[] = [];
-  if (profile.email) out.push({ label: 'Email', href: `mailto:${profile.email}`, kind: 'social' });
+  if (profile.email) out.push({ label: profile.email, href: `mailto:${profile.email}`, kind: 'social', note: 'Email' });
   out.push({ label: 'LinkedIn', href: profile.linkedin, kind: 'social' });
   if (profile.github) out.push({ label: 'GitHub', href: profile.github, kind: 'social' });
   if (profile.resumeUrl) out.push({ label: 'Résumé', href: profile.resumeUrl, kind: 'download' });

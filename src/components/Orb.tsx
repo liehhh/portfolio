@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
-import { profile } from '@/content/portfolio';
-import { fine, mouse, reducedMotion, useFrame } from '@/lib/motion';
+import { useRef, useState } from "react";
+import { profile } from "@/content/portfolio";
+import { fine, mouse, reducedMotion, useFrame } from "@/lib/motion";
 
 /**
  * Magnetic glass orb. With an email configured it copies the address;
@@ -11,7 +11,7 @@ import { fine, mouse, reducedMotion, useFrame } from '@/lib/motion';
 export default function Orb() {
   const el = useRef<HTMLElement | null>(null);
   const m = useRef({ x: 0, y: 0 });
-  const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle');
+  const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
 
   useFrame(() => {
     const b = el.current;
@@ -54,11 +54,11 @@ export default function Orb() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      setState('copied');
+      setState("copied");
     } catch {
-      setState('failed');
+      setState("failed");
     }
-    setTimeout(() => setState('idle'), 2200);
+    setTimeout(() => setState("idle"), 2200);
   };
   return (
     <button
@@ -72,9 +72,16 @@ export default function Orb() {
       aria-label={`Copy email address ${email}`}
     >
       <span className="mono" aria-live="polite">
-        {state === 'copied' ? 'Copied ✓' : state === 'failed' ? 'Copy blocked — use Email link' : 'Copy email'}
+        {state === "copied"
+          ? "Copied ✓"
+          : state === "failed"
+          ? "Copy blocked — use Email link"
+          : "Copy email"}
       </span>
-      <b>{email}</b>
+      <b>
+        {email.split("@")[0]}
+        <wbr />@{email.split("@")[1]}
+      </b>
     </button>
   );
 }
