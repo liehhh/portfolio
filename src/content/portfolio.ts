@@ -32,7 +32,7 @@ export interface Project {
   /** One-line product descriptor. */
   kind: string;
   discipline: string;
-  platform: 'Desktop' | 'Web' | 'Mobile';
+  platform: 'Desktop' | 'Web' | 'Mobile' | 'Service';
   /** Compact stack shown in the index. */
   stack: string;
   summary: string;
@@ -41,6 +41,8 @@ export interface Project {
   focus?: string;
   technologies: string[];
   context?: string;
+  /** Employer for professional work — renders a "Built at <org>" label that sets it apart from independent projects. */
+  org?: string;
   /** Release status badge, e.g. "On TestFlight". */
   status?: string;
   /** Shown in the detail view when there is no public link to offer. */
@@ -128,8 +130,68 @@ export const about = {
 
 export const projects: Project[] = [
   {
-    slug: 'echo',
+    slug: 'incident-scope-agent',
     no: '01',
+    title: 'Incident Scope Agent',
+    sub: 'blast radius',
+    kind: 'AI incident investigation agent',
+    discipline: 'AI · Production ops',
+    platform: 'Service',
+    stack: 'Node.js / Claude / MCP',
+    summary:
+      'An AI agent that determines the blast radius of production incidents — affected services, upstream and downstream dependencies, impacted customer segments and regions. Built and solely owned at eToro; used by internal teams, R&D and Incident Management, including to scope two real P2 production incidents.',
+    contributions: [
+      'Designed, developed and own the agent end to end, running on Node.js.',
+      'Used Claude to orchestrate live investigations through MCP tools, primarily querying Splunk and Coralogix with read-only access.',
+      'Accepts an incident ticket, alert text, or a service and time window as investigation input.',
+      'Correlates service health, dependencies and impact signals to identify affected services, upstream and downstream dependencies, impacted customer segments or aggregate counts, and affected regions.',
+      'Distinguishes supporting evidence from assumptions in every assessment.',
+      'Separated AI investigation from a deterministic, AI-free validation and reporting engine.',
+      'The engine enforces evidence requirements, redacts personal information and identifiers, and prevents duplicate evidence from counting as independent corroboration.',
+      "Keeps the incident's declared priority separate from the agent's suggested severity.",
+      'Delivers structured, auditable scope reports to Microsoft Teams.',
+    ],
+    focus:
+      'Giving incident responders an evidence-backed assessment of impact to support severity, escalation and prioritization decisions — reducing manual scoping work and accelerating early incident assessment. The model investigates; a deterministic engine decides what counts as evidence.',
+    technologies: ['Node.js', 'JavaScript', 'Claude', 'MCP', 'Splunk', 'Coralogix', 'Microsoft Teams'],
+    context:
+      'Professional project at eToro — designed, developed and solely owned by me. Used by internal teams, R&D and Incident Management to scope two real P2 production incidents.',
+    org: 'eToro',
+    status: 'Internal tool',
+    statusNote: 'Proprietary — no public source code or live demo.',
+    links: [],
+    featured: {
+      code: 'F01',
+      blurb: 'Two real P2 incidents scoped — evidence-backed blast radius, built and owned end to end…',
+      role: 'Sole owner — design & development',
+      outcome: 'Scoped two real P2 production incidents · used by R&D and Incident Management',
+      figures: [
+        {
+          type: 'flow',
+          caption: '(Fig. 02a) Investigation pipeline',
+          steps: [
+            { label: 'Input', detail: 'Ticket · alert · service + window' },
+            { label: 'Investigate', detail: 'Claude · MCP · read-only' },
+            { label: 'Validate', detail: 'Deterministic · AI-free' },
+            { label: 'Report', detail: 'Microsoft Teams · auditable' },
+          ],
+          aside: 'Evidence ≠ assumption · PII redacted · no double-counting',
+        },
+        {
+          type: 'list',
+          caption: '(Fig. 02b) Scope',
+          items: [
+            { label: 'Services', detail: 'Affected · upstream · downstream' },
+            { label: 'Users', detail: 'Customer segments · counts' },
+            { label: 'Regions', detail: 'Affected' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'echo',
+    no: '02',
     title: 'Echo',
     sub: 'voice tutor',
     kind: 'AI desktop tutor',
@@ -166,14 +228,14 @@ export const projects: Project[] = [
       },
     ],
     featured: {
-      code: 'F01',
+      code: 'F02',
       blurb: 'Voice, screen awareness and a live whiteboard — explained in context…',
       role: 'Full-stack & AI engineering',
       outcome: 'v0.1.0 installers — Windows & macOS (Apple Silicon)',
       figures: [
         {
           type: 'flow',
-          caption: '(Fig. 02a) Voice pipeline',
+          caption: '(Fig. 03a) Voice pipeline',
           steps: [
             { label: 'Speech in', detail: 'Deepgram · streaming STT' },
             { label: 'Reason + tools', detail: 'Claude · screen context' },
@@ -184,7 +246,7 @@ export const projects: Project[] = [
         },
         {
           type: 'list',
-          caption: '(Fig. 02b) Surfaces',
+          caption: '(Fig. 03b) Surfaces',
           items: [
             { label: 'Voice', detail: 'Streaming conversation' },
             { label: 'Screen', detail: 'Screenshots as context' },
@@ -196,7 +258,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'interviewerai',
-    no: '02',
+    no: '03',
     title: 'InterviewerAI',
     sub: 'interviews',
     kind: 'AI interview simulator',
@@ -219,14 +281,14 @@ export const projects: Project[] = [
     context: 'A personal project also used by colleagues. A production Lighthouse run recorded 100 Performance · 95 Accessibility · 100 Best Practices · 100 SEO.',
     links: [{ label: 'Live demo', href: 'https://main.d7m3rdqgkutlt.amplifyapp.com/', kind: 'demo', note: 'AWS Amplify' }],
     featured: {
-      code: 'F02',
+      code: 'F03',
       blurb: 'Job description in, tailored interview and structured feedback out…',
       role: 'Full-stack & AI engineering',
       outcome: 'Used by colleagues · Lighthouse 100 / 95 / 100 / 100',
       figures: [
         {
           type: 'flow',
-          caption: '(Fig. 03a) Interview flow',
+          caption: '(Fig. 04a) Interview flow',
           steps: [
             { label: 'Inputs', detail: 'Job description + résumé' },
             { label: 'Retrieve', detail: 'Question-bank entries' },
@@ -237,7 +299,7 @@ export const projects: Project[] = [
         },
         {
           type: 'stats',
-          caption: '(Fig. 03b) Lighthouse',
+          caption: '(Fig. 04b) Lighthouse',
           items: [
             { value: '100', label: 'Performance' },
             { value: '95', label: 'Accessibility' },
@@ -251,7 +313,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'memoire',
-    no: '03',
+    no: '04',
     title: 'Memoire',
     sub: 'map diary',
     kind: 'Map-based photo app',
@@ -278,14 +340,14 @@ export const projects: Project[] = [
     statusNote: 'Distributed through TestFlight',
     links: [],
     featured: {
-      code: 'F03',
+      code: 'F04',
       blurb: 'Pins, photos and live sync — shipped through to TestFlight…',
       role: 'Mobile & backend engineering, release',
       outcome: 'On TestFlight · App Store submission in preparation',
       figures: [
         {
           type: 'flow',
-          caption: '(Fig. 04a) Pin lifecycle',
+          caption: '(Fig. 05a) Pin lifecycle',
           steps: [
             { label: 'Drop a pin', detail: 'Map · location' },
             { label: 'Attach photos', detail: 'Cloudinary · signed upload' },
@@ -296,7 +358,7 @@ export const projects: Project[] = [
         },
         {
           type: 'image',
-          caption: '(Fig. 04b) App icon',
+          caption: '(Fig. 05b) App icon',
           src: '/projects/memoire-icon.png',
           alt: 'Memoire app icon: a white wind turbine on a teal gradient',
           label: 'Memoire — iOS · TestFlight',
@@ -306,7 +368,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'swipe',
-    no: '04',
+    no: '05',
     title: 'Swipe',
     sub: 'events',
     kind: 'Event discovery app',
@@ -324,7 +386,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'yuzu',
-    no: '05',
+    no: '06',
     title: 'Yuzu',
     sub: 'music social',
     kind: 'Social music discovery',
@@ -384,6 +446,7 @@ export const experience: ExperienceItem[] = [
     role: 'NOC Engineer',
     tag: 'Production ops',
     details: [
+      'Built and solely own the Incident Scope Agent — an AI incident investigation agent used by R&D and Incident Management to scope two real P2 production incidents.',
       'Investigate complex production issues across applications, APIs, databases and cloud services.',
       'Support incident handling, escalation and on-call operations, using logs, metrics and traces.',
       'Splunk, Datadog, Coralogix, Grafana, Mixpanel, Azure Monitor, KQL and SQL Server.',

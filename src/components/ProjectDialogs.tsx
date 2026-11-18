@@ -21,6 +21,7 @@ export default function ProjectDialogs() {
                   <span>
                     ({p.no}) Project — {p.platform}
                   </span>
+                  {p.org && <StatusBadge org={p.org} />}
                   {p.status && <StatusBadge status={p.status} />}
                 </span>
                 <form method="dialog">
@@ -52,6 +53,12 @@ export default function ProjectDialogs() {
                     <dd>{p.discipline}</dd>
                     <dt>Platform</dt>
                     <dd>{p.platform}</dd>
+                    {p.org && (
+                      <>
+                        <dt>Context</dt>
+                        <dd>Built at {p.org}</dd>
+                      </>
+                    )}
                     {p.featured && (
                       <>
                         <dt>Role</dt>

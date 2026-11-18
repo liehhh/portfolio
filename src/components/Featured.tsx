@@ -23,7 +23,12 @@ function Article({ p, flip }: { p: FP; flip: boolean }) {
   );
   const text = (
     <Reveal className="ft-text">
-      {p.status && <StatusBadge status={p.status} />}
+      {(p.org || p.status) && (
+        <div className="badge-set">
+          {p.org && <StatusBadge org={p.org} />}
+          {p.status && <StatusBadge status={p.status} />}
+        </div>
+      )}
       <p>{p.summary}</p>
       <dl className="mono">
         <dt>Role</dt>

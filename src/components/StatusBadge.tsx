@@ -1,9 +1,13 @@
-/** Small mono pill for a project's release status (e.g. "On TestFlight"). Not a link. */
-export default function StatusBadge({ status, className = '' }: { status: string; className?: string }) {
+/**
+ * Small mono pill. `status` — release/availability status (e.g. "On TestFlight"), accent dot.
+ * `org` — professional context ("Built at eToro"), square marker, set apart from independent work. Not a link.
+ */
+export default function StatusBadge({ status, org, className = '' }: { status?: string; org?: string; className?: string }) {
+  const isOrg = !status && !!org;
   return (
-    <span className={`badge mono ${className}`}>
+    <span className={`badge mono ${isOrg ? 'badge-org' : ''} ${className}`}>
       <i aria-hidden />
-      {status}
+      {isOrg ? `Built at ${org}` : status}
     </span>
   );
 }

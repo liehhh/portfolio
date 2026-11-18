@@ -79,12 +79,12 @@ export default function Work() {
               className="row item"
               data-cursor="View ↗"
               onMouseEnter={() => setHover(i)}
-              aria-label={`${p.title} — ${p.kind}${p.status ? ` (${p.status})` : ''}. ${p.discipline}. ${p.stack}. Open project details`}
+              aria-label={`${p.title} — ${p.kind}${p.org ? `, built at ${p.org}` : ''}${p.status ? ` (${p.status})` : ''}. ${p.discipline}. ${p.stack}. Open project details`}
             >
               <span className="mono">{p.no}</span>
               <span className="t">
                 {p.title} <em>— {p.sub}</em>
-                {p.status && <StatusBadge status={p.status} className="badge-row" />}
+                {p.org ? <StatusBadge org={p.org} className="badge-row" /> : p.status && <StatusBadge status={p.status} className="badge-row" />}
               </span>
               <span className="d">{p.discipline}</span>
               <span className="mono s">{p.stack}</span>
