@@ -139,7 +139,7 @@ export const projects: Project[] = [
     platform: 'Service',
     stack: 'Node.js / Claude / MCP',
     summary:
-      'An AI agent that determines the blast radius of production incidents — affected services, upstream and downstream dependencies, impacted customer segments and regions. Built and solely owned at eToro; used by internal teams, R&D and Incident Management, including to scope two real P2 production incidents.',
+      'An AI agent that determines the blast radius of production incidents — affected services, upstream and downstream dependencies, impacted customer segments and regions. Built and solely owned at eToro; used by internal teams, R&D and Incident Management to scope real P2 production incidents.',
     contributions: [
       'Designed, developed and own the agent end to end, running on Node.js.',
       'Used Claude to orchestrate live investigations through MCP tools, primarily querying Splunk and Coralogix with read-only access.',
